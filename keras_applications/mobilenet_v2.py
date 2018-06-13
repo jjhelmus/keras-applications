@@ -83,7 +83,6 @@ import numpy as np
 from . import get_keras_submodule
 
 backend = get_keras_submodule('backend')
-engine = get_keras_submodule('engine')
 layers = get_keras_submodule('layers')
 models = get_keras_submodule('models')
 keras_utils = get_keras_submodule('utils')
@@ -223,7 +222,7 @@ def MobileNetV2(input_shape=None,
         except ValueError:
             try:
                 is_input_t_tensor = backend.is_keras_tensor(
-                    engine.get_source_inputs(input_tensor))
+                    utils.get_source_inputs(input_tensor))
             except ValueError:
                 raise ValueError('input_tensor: ', input_tensor,
                                  'is not type input_tensor')
@@ -427,7 +426,7 @@ def MobileNetV2(input_shape=None,
     # Ensure that the model takes into account
     # any potential predecessors of `input_tensor`.
     if input_tensor is not None:
-        inputs = engine.get_source_inputs(input_tensor)
+        inputs = utils.get_source_inputs(input_tensor)
     else:
         inputs = img_input
 

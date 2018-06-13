@@ -15,7 +15,6 @@ import os
 from . import get_keras_submodule
 
 backend = get_keras_submodule('backend')
-engine = get_keras_submodule('engine')
 layers = get_keras_submodule('layers')
 models = get_keras_submodule('models')
 keras_utils = get_keras_submodule('utils')
@@ -203,7 +202,7 @@ def VGG19(include_top=True,
     # Ensure that the model takes into account
     # any potential predecessors of `input_tensor`.
     if input_tensor is not None:
-        inputs = engine.get_source_inputs(input_tensor)
+        inputs = utils.get_source_inputs(input_tensor)
     else:
         inputs = img_input
     # Create model.

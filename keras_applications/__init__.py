@@ -22,6 +22,8 @@ def set_keras_submodules(backend, engine, layers, models, utils):
     _KERAS_LAYERS = layers
     _KERAS_MODELS = models
     _KERAS_UTILS = utils
+    if not hasattr(utils, 'get_source_inputs'):
+        utils.get_source_inputs = engine.get_source_inputs
 
 
 def get_keras_submodule(name):

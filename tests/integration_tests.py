@@ -16,10 +16,13 @@ def test_that_internal_imports_are_not_overriden():
     if not hasattr(keras.applications, 'keras_applications'):
         return  # Old Keras, don't run.
 
+    if not hasattr(keras.utils, 'get_source_inputs'):
+        return  # Old Keras, don't run.
+
     import tensorflow as tf
     keras_applications.set_keras_submodules(
         backend=tf.keras.backend,
-        engine=tf.keras.engine,
+        engine=None,
         layers=tf.keras.layers,
         models=tf.keras.models,
         utils=tf.keras.utils)
@@ -32,7 +35,7 @@ def test_that_internal_imports_are_not_overriden():
 
     keras_applications.set_keras_submodules(
         backend=tf.keras.backend,
-        engine=tf.keras.engine,
+        engine=None,
         layers=tf.keras.layers,
         models=tf.keras.models,
         utils=tf.keras.utils)
